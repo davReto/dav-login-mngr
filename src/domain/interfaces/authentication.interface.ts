@@ -3,6 +3,11 @@ export interface IOtpParams {
   userId: string;
 }
 
+export interface IPasswordParams {
+  email: string;
+  password: string;
+}
+
 export interface AuthenticationStrategy {
-  login(loginParams: IOtpParams): Promise<boolean>;
+  login(loginParams: IOtpParams | IPasswordParams): Promise<boolean>;
 }

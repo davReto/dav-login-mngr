@@ -1,7 +1,8 @@
 import { AuthenticationStrategy } from '../../domain/interfaces/authentication.interface';
+import { OtpDto } from '../../domain/dto/otp.dto';
 
 export class OtpLoginStrategy implements AuthenticationStrategy {
-  async login(loginParams: { otp: string; userId: string }): Promise<boolean> {
+  async login(loginParams: OtpDto): Promise<boolean> {
     if (loginParams.otp === '123456') {
       return true;
     } else {
