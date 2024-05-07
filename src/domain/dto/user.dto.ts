@@ -23,4 +23,7 @@ export class CreateUserDto {
 
   @ApiProperty({ description: 'Word details', type: WordDto })
   word: WordDto;
+
+  @ApiProperty({ description: 'The password', example: '123456' })
+  password: string;
 }

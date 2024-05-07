@@ -19,6 +19,9 @@ export class User {
   @Column({ name: 'otp' })
   otp: string;
 
+  @Column()
+  password: string;
+
   @OneToOne(() => Product, (product) => product.user)
   product: Product;
 
