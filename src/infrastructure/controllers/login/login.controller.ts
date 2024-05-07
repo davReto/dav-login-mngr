@@ -5,12 +5,15 @@ import { OtpService } from '../../../application/use-cases/otp/otp.service';
 import { OtpDto } from '../../../domain/dto/otp.dto';
 import { AuthService } from '../../../application/use-cases/auth/auth.service';
 import { AuthLoginDto } from '../../../domain/dto/auth.dto';
+import { IdentityDto } from '../../../domain/dto/identity.dto';
+import { IdentityService } from '../../../application/use-cases/indentity/indentity.service';
 
 @Controller('login')
 export class LoginController {
   constructor(
     private readonly otpService: OtpService,
     private readonly authService: AuthService,
+    private readonly identityService: IdentityService,
   ) {}
 
   @Post('/otp')
@@ -23,5 +26,11 @@ export class LoginController {
   @ApiBody({ type: AuthLoginDto, description: 'login' })
   async login(@Body() otpParams: AuthLoginDto): Promise<boolean> {
     return this.authService.login(otpParams);
+  }
+
+  @Post('/identity')
+  @ApiBody({ type: IdentityDto, description: 'Identity' })
+  async identity(@Body() identityParams: IdentityDto): Promise<boolean> {
+    return this.identityService.login(identityParams);
   }
 }
