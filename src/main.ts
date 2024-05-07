@@ -6,6 +6,10 @@ import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Accept, Authorization',
+  });
   const configService = app.get(ConfigService);
   const logger = new Logger(`${configService.get<string>('APP_NAME')}`);
 
