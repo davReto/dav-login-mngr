@@ -9,6 +9,7 @@ import { PasswordLoginStrategy } from './strategies/password-login.strategy';
 import { IdentityService } from './use-cases/indentity/indentity.service';
 import { IdentityLoginStrategy } from './strategies/identity-login.strategy';
 import { WordStrategy } from './strategies/word.strategy';
+import { WordService } from './use-cases/word/word.service';
 
 @Module({
   imports: [DomainModule],
@@ -33,6 +34,7 @@ import { WordStrategy } from './strategies/word.strategy';
     AuthService,
     OtpService,
     IdentityService,
+    WordService,
   ],
   exports: [CustomerService, AuthService, OtpService],
 })

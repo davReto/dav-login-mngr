@@ -1,12 +1,14 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiBody } from '@nestjs/swagger';
 
-import { OtpService } from '../../../application/use-cases/otp/otp.service';
+import { WordDto } from '../../../domain/dto/word.dto';
 import { OtpDto } from '../../../domain/dto/otp.dto';
-import { AuthService } from '../../../application/use-cases/auth/auth.service';
 import { AuthLoginDto } from '../../../domain/dto/auth.dto';
 import { IdentityDto } from '../../../domain/dto/identity.dto';
+import { OtpService } from '../../../application/use-cases/otp/otp.service';
+import { AuthService } from '../../../application/use-cases/auth/auth.service';
 import { IdentityService } from '../../../application/use-cases/indentity/indentity.service';
+import { WordService } from '../../../application/use-cases/word/word.service';
 
 @Controller('login')
 export class LoginController {
@@ -14,6 +16,7 @@ export class LoginController {
     private readonly otpService: OtpService,
     private readonly authService: AuthService,
     private readonly identityService: IdentityService,
+    private readonly wordService: WordService,
   ) {}
 
   @Post('/otp')
@@ -32,5 +35,11 @@ export class LoginController {
   @ApiBody({ type: IdentityDto, description: 'Identity' })
   async identity(@Body() identityParams: IdentityDto): Promise<boolean> {
     return this.identityService.login(identityParams);
+  }
+
+  @Post('/word')
+  @ApiBody({ type: WordDto, description: 'Word' })
+  async word(@Body() wordParams: WordDto): Promise<boolean> {
+    return this.wordService.login(wordParams);
   }
 }
