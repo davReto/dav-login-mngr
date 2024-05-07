@@ -8,6 +8,7 @@ import { OtpLoginStrategy } from './strategies/otp-login.strategy';
 import { PasswordLoginStrategy } from './strategies/password-login.strategy';
 import { IdentityService } from './use-cases/indentity/indentity.service';
 import { IdentityLoginStrategy } from './strategies/identity-login.strategy';
+import { WordStrategy } from './strategies/word.strategy';
 
 @Module({
   imports: [DomainModule],
@@ -23,6 +24,10 @@ import { IdentityLoginStrategy } from './strategies/identity-login.strategy';
     {
       provide: 'IDENTITY_STRATEGY',
       useClass: IdentityLoginStrategy,
+    },
+    {
+      provide: 'WORD_STRATEGY',
+      useClass: WordStrategy,
     },
     CustomerService,
     AuthService,
