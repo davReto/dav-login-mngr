@@ -1,19 +1,23 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import { Product } from './product.entity';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id?: string;
 
-  @Column()
+  @Column({ name: 'user_name' })
   name: string;
 
-  @Column({ name: 'last_name' })
-  lastName: string;
+  @Column({ name: 'type_identification' })
+  typeIdentification: string;
 
-  @Column()
-  email: string;
+  @Column({ name: 'number_identification' })
+  numberIdentification: string;
 
-  @Column('int')
-  age: number;
+  @Column({ name: 'otp' })
+  otp: string;
+
+  @OneToOne(() => Product, (product) => product.user)
+  product: Product;
 }
