@@ -9,6 +9,7 @@ import { OtpService } from '../../../application/use-cases/otp/otp.service';
 import { AuthService } from '../../../application/use-cases/auth/auth.service';
 import { IdentityService } from '../../../application/use-cases/indentity/indentity.service';
 import { WordService } from '../../../application/use-cases/word/word.service';
+import { User } from '../../../domain/entities/user.entity';
 
 @Controller('login')
 export class LoginController {
@@ -27,7 +28,7 @@ export class LoginController {
 
   @Post('/login')
   @ApiBody({ type: AuthLoginDto, description: 'login' })
-  async login(@Body() otpParams: AuthLoginDto): Promise<boolean> {
+  async login(@Body() otpParams: AuthLoginDto): Promise<User> {
     return this.authService.login(otpParams);
   }
 
