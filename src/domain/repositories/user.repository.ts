@@ -17,13 +17,6 @@ export class UserRepository {
     private wordRepository: Repository<Word>,
   ) {}
 
-  findByName(name: string) {
-    return this.userRepository
-      .createQueryBuilder('user')
-      .where('user.name = :name', { name })
-      .getMany();
-  }
-
   async createUser(userData: CreateUserDto): Promise<User> {
     const { product, word, ...userDetails } = userData;
 
