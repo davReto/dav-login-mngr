@@ -1,4 +1,4 @@
-import { AuthenticationStrategy } from '../interfaces/authentication.interface';
+import { AuthenticationStrategy } from '../../domain/interfaces/authentication.interface';
 
 export class OtpLoginStrategy implements AuthenticationStrategy {
   async login(loginParams: { otp: string; userId: string }): Promise<boolean> {

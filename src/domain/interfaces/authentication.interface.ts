@@ -1,8 +1,8 @@
-interface ILoginParams {
-  userId: string;
+export interface IOtpParams {
   otp: string;
+  userId: string;
 }
 
 export interface AuthenticationStrategy {
-  login(loginParams: ILoginParams): Promise<boolean>;
+  login(loginParams: IOtpParams): Promise<boolean>;
 }
