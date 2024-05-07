@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { AuthenticationStrategy } from '../../domain/interfaces/authentication.interface';
-import { OtpDto } from '../../domain/dto/otp.dto';
+import {
+  AuthenticationStrategy,
+  IOtpParams,
+} from '../../domain/interfaces/authentication.interface';
 
 @Injectable()
 export class OtpLoginStrategy implements AuthenticationStrategy {
-  async login(loginParams: OtpDto): Promise<boolean> {
+  async login(loginParams: IOtpParams): Promise<boolean> {
     try {
-      if (loginParams.otp === '123456') {
+      if (loginParams.otp === loginParams.otpCheck) {
         return true;
       } else {
         throw new Error('Invalid OTP provided');

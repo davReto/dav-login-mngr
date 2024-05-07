@@ -1,6 +1,7 @@
 export interface IOtpParams {
   otp: string;
   userId: string;
+  otpCheck: string;
 }
 
 export interface IPasswordParams {

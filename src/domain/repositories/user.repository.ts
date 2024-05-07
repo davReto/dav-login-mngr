@@ -39,4 +39,16 @@ export class UserRepository {
     newUser.word = newWord;
     return newUser;
   }
+
+  async getUserById(userId: string): Promise<User> {
+    try {
+      const user = await this.userRepository.findOne({
+        where: { id: userId },
+        relations: ['product', 'word'],
+      });
+      return user;
+    } catch (error) {
+      throw new Error('User not found');
+    }
+  }
 }
