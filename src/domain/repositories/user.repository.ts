@@ -6,6 +6,7 @@ import { CreateUserDto } from '../dto/user.dto';
 import { Product } from '../entities/product.entity';
 import { Word } from '../entities/word.entity';
 import { IdentityDto } from '../dto/identity.dto';
+import { AuthLoginDto } from '../dto/auth.dto';
 
 @Injectable()
 export class UserRepository {
@@ -67,6 +68,21 @@ export class UserRepository {
             numberProduct: numberProduct,
             numberIdentification: product,
           },
+        },
+        relations: ['product', 'word'],
+      });
+      return user;
+    } catch (error) {
+      throw new Error('identity not found');
+    }
+  }
+
+  async loginUserIdentity(auth: AuthLoginDto): Promise<User> {
+    try {
+      const user = await this.userRepository.findOne({
+        where: {
+          name: auth.userName,
+          password: auth.password,
         },
         relations: ['product', 'word'],
       });

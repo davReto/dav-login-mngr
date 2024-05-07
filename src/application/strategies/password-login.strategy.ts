@@ -1,15 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { AuthenticationStrategy } from '../../domain/interfaces/authentication.interface';
-import { AuthLoginDto } from '../../domain/dto/auth.dto';
-
+import {
+  AuthenticationStrategy,
+  IPasswordParams,
+} from '../../domain/interfaces/authentication.interface';
 @Injectable()
 export class PasswordLoginStrategy implements AuthenticationStrategy {
-  async login(loginParams: AuthLoginDto): Promise<boolean> {
-    const { email, password } = loginParams;
-    if (email === 'testuser' && password === 'securepassword') {
-      return true;
-    } else {
-      return false;
+  async login(loginParams: IPasswordParams): Promise<boolean> {
+    const { userName: email, password } = loginParams;
+    try {
+      if (email === loginParams.dbName && password === loginParams.dbPassword) {
+        return true;
+      } else {
+        throw new Error('Invalid credentials provided');
+      }
+    } catch (error) {
+      throw new Error('Error during password validation');
     }
   }
 }

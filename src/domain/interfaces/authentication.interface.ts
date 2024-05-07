@@ -5,8 +5,10 @@ export interface IOtpParams {
 }
 
 export interface IPasswordParams {
-  email: string;
+  userName: string;
   password: string;
+  dbName: string;
+  dbPassword: string;
 }
 
 export interface IdentityParams {

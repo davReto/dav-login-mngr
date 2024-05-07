@@ -5,7 +5,7 @@ export class AuthLoginDto {
     description: 'The email of the user.',
     example: 'santiago@example.com',
   })
-  email: string;
+  userName: string;
 
   @ApiProperty({
     description: 'The password',
