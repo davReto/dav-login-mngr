@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { AuthenticationStrategy } from '../../../domain/interfaces/authentication.interface';
 import { OtpDto } from '../../../domain/dto/otp.dto';
 
@@ -9,6 +9,11 @@ export class OtpService {
   ) {}
 
   async login(loginParams: OtpDto): Promise<boolean> {
-    return this.strategy.login(loginParams);
+    try {
+      return await this.strategy.login(loginParams);
+    } catch (error) {
+      console.error('Authentication error:', error);
+      throw new BadRequestException('Invalid otp.');
+    }
   }
 }

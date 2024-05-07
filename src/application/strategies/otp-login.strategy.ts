@@ -5,10 +5,15 @@ import { OtpDto } from '../../domain/dto/otp.dto';
 @Injectable()
 export class OtpLoginStrategy implements AuthenticationStrategy {
   async login(loginParams: OtpDto): Promise<boolean> {
-    if (loginParams.otp === '123456') {
-      return true;
-    } else {
-      return false;
+    try {
+      if (loginParams.otp === '123456') {
+        return true;
+      } else {
+        throw new Error('Invalid OTP provided');
+      }
+    } catch (error) {
+      console.error('Error during OTP validation:', error);
+      throw new Error('Error during OTP validation:');
     }
   }
 }
