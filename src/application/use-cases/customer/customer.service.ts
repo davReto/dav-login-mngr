@@ -9,7 +9,9 @@ export class CustomerService {
 
   async createUser(createUserDto: CreateUserDto) {
     try {
-      return await this.userRepository.createUser(createUserDto);
+      const user = await this.userRepository.createUser(createUserDto);
+      console.log('User created:', user);
+      return user;
     } catch (error) {
       throw new BadRequestException('Invalid input.');
     }

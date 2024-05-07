@@ -1,18 +1,26 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ProductDto } from './product.dto';
+import { WordDto } from './word.dto';
 
 export class CreateUserDto {
   @ApiProperty({ description: 'The name of the user.', example: 'John' })
   name: string;
 
-  @ApiProperty({ description: 'The last name of the user.', example: 'Doe' })
-  lastName: string;
+  @ApiProperty({ description: 'The identification ', example: 'CC' })
+  typeIdentification: string;
 
   @ApiProperty({
-    description: 'The email of the user.',
-    example: 'john.doe@example.com',
+    description: 'The number of the user.',
+    example: '1019',
   })
-  email: string;
+  numberIdentification: string;
 
-  @ApiProperty({ description: 'The age of the user.', example: 30 })
-  age: number;
+  @ApiProperty({ description: 'The otp', example: '20' })
+  otp: string;
+
+  @ApiProperty({ description: 'Product details', type: ProductDto })
+  product: ProductDto;
+
+  @ApiProperty({ description: 'Word details', type: WordDto })
+  word: WordDto;
 }

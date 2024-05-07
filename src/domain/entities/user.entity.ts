@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
 import { Product } from './product.entity';
+import { Word } from './word.entity';
 
 @Entity()
 export class User {
@@ -20,4 +21,7 @@ export class User {
 
   @OneToOne(() => Product, (product) => product.user)
   product: Product;
+
+  @OneToOne(() => Word, (word) => word.user)
+  word: Word;
 }
