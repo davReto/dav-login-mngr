@@ -36,6 +36,12 @@ import { WordService } from './use-cases/word/word.service';
     IdentityService,
     WordService,
   ],
-  exports: [CustomerService, AuthService, OtpService],
+  exports: [
+    CustomerService,
+    AuthService,
+    OtpService,
+    IdentityService,
+    WordService,
+  ],
 })
 export class ApplicationModule {}
