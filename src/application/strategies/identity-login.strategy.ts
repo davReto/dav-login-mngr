@@ -1,14 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { AuthenticationStrategy } from '../../domain/interfaces/authentication.interface';
-import { IdentityDto } from '../../domain/dto/identity.dto';
+import {
+  AuthenticationStrategy,
+  IdentityInterface,
+} from '../../domain/interfaces/authentication.interface';
 
 @Injectable()
 export class IdentityLoginStrategy implements AuthenticationStrategy {
-  async login(loginParams: IdentityDto): Promise<boolean> {
-    if (loginParams.identity === '123456') {
-      return true;
-    } else {
-      return false;
+  async login({
+    firstIdentity,
+    secondIdentity,
+  }: IdentityInterface): Promise<boolean> {
+    try {
+      if (
+        firstIdentity.identity === secondIdentity.identity &&
+        firstIdentity.numberProduct === secondIdentity.numberProduct &&
+        firstIdentity.product === secondIdentity.product &&
+        firstIdentity.typeIdentity === secondIdentity.typeIdentity
+      ) {
+        return true;
+      } else {
+        throw new Error('Invalid identity provided');
+      }
+    } catch (error) {
+      console.error('Error during identity validation:', error);
+      throw new Error('Error during identity validation');
     }
   }
 }

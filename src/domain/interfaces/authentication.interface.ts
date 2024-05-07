@@ -16,6 +16,11 @@ export interface IdentityParams {
   product: string;
 }
 
+export interface IdentityInterface {
+  firstIdentity: IdentityParams;
+  secondIdentity: IdentityParams;
+}
+
 export interface IWordParams {
   word: string;
   phrase: string;
@@ -24,6 +29,6 @@ export interface IWordParams {
 
 export interface AuthenticationStrategy {
   login(
-    loginParams: IOtpParams | IPasswordParams | IdentityParams | IWordParams,
+    loginParams: IOtpParams | IPasswordParams | IdentityInterface | IWordParams,
   ): Promise<boolean>;
 }
